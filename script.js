@@ -1,22 +1,22 @@
-const inputBox = document.getElementById("input-box");
-const listContainer = document.getElementById("list-container");
+const input = document.getElementById("input-box");
+const li = document.getElementById("list-container");
 function addTask(){
-    if(inputBox.value === '0'){
+    if(input.value === '0'){
         alert("You must write something!!");
     }
     else{
-        let li = document.createElement("li");
-        li.innerHTML = inputBox.value;
-        listContainer.appendChild(li);
+        let a = document.createElement("li");
+        a.innerHTML = input.value;
+        li.appendChild(a);
         let span = document.createElement("span");
         span.innerHTML = "\u00d7";
-        li.appendChild(span);
+        a.appendChild(span);
     }
-    inputBox.value = "";
+    input.value = "";
     saveData();
 }
 
-listContainer.addEventListener("click",function(e){
+li.addEventListener("click",function(e){
     if(e.target.tagName === "LI"){
         e.target.classList.toggle("checked");
         saveData();
@@ -28,9 +28,9 @@ listContainer.addEventListener("click",function(e){
 },false);
 
 function saveData(){
-    localStorage.setItem("data",listContainer.innerHTML);
+    localStorage.setItem("data",li.innerHTML);
 }
 function showTask(){
-    listContainer.innerHTML = localStorage.getItem("data");
+    li.innerHTML = localStorage.getItem("data");
 }
 showTask();
